@@ -1,0 +1,8 @@
+
+# Setup 
+
+./setup.sh
+
+# Run 
+
+./start.sh 
