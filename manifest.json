@@ -231,7 +231,7 @@
     "128": "icon.png"
   },
   "manifest_version": 2,
-  "name": "SearchPreview-NG",
+  "name": "SearchPreview-Selfhosted",
   "options_ui": {
     "page": "options.html"
   },
