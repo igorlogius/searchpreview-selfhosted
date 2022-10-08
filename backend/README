@@ -1,8 +1,11 @@
+# Requirements
+
+- npm + nodejs  (https://nodejs.org/)
 
 # Setup 
 
-./setup.sh
+npm install && npm audit fix
 
 # Run 
 
-./start.sh 
+npm start
