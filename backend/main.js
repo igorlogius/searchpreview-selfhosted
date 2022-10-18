@@ -69,6 +69,9 @@ let cluster;
   cluster = await Cluster.launch({
     concurrency: Cluster.CONCURRENCY_CONTEXT,
     maxConcurrency: 4,
+    puppeteerOptions: {
+        args: ['--no-sandbox']
+    }
   });
   await cluster.task(async ({ page, data: url }) => {
     await page.setJavaScriptEnabled(false); // disable JS execution
@@ -78,17 +81,21 @@ let cluster;
 })();
 
 app.get('/api', async (req, res) => {
-    if(req.query && req.query.url){
-        const urlobj = new URL(decodeURIComponent(req.query.url));
-        const url = urlobj.toString(); //urlobj.origin;
-        let thumb = await getThumb(url);
-        if( thumb === null) {
-            console.log('creating preview image for',url);
-            thumb = await cluster.execute(url);
-            setThumb(url,thumb);
+    try {
+        if(req.query && req.query.url){
+            const urlobj = new URL(decodeURIComponent(req.query.url));
+            const url = urlobj.origin + urlobj.pathname;
+            let thumb = await getThumb(url);
+            if( thumb === null) {
+                console.log('creating preview image for',url);
+                thumb = await cluster.execute(url);
+                setThumb(url,thumb);
+            }
+            res.writeHead(200, {'Content-Type': 'image/webp'});
+            return res.end(thumb);
         }
-        res.writeHead(200, {'Content-Type': 'image/webp'});
-        return res.end(thumb);
+    }catch(e){
+        console.error(e);
     }
     return res.status(404).send("Not Found");
 })

@@ -8,9 +8,5 @@ https://user-images.githubusercontent.com/67047467/194772012-cb383d1a-5ba5-4531-
 
 # Run Backend 
 
-`cd backend/ && npm install && npm start`
+`cd backend/ && docker-setup.sh && docker-start.sh`
 
-# Open TODOs
-
-1. support (Bing, Yahoo, Ecosia, Brave, ... )
-1. add dockerfile

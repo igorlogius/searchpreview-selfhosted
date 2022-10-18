@@ -1,11 +1,26 @@
-# Requirements
+# Docker
 
-- npm + nodejs  (https://nodejs.org/)
+## Setup
 
-# Setup 
+run `docker-setup.sh` or  `docker build . -t searchpreview-backend`
 
-npm install && npm audit fix
+## Start
 
-# Run 
+run `docker-start.sh` or `docker run -p7050:7050 searchpreview-backend`
+
+(pass the -d option to docker run in the background)
+
+# Development 
+
+## Requirements
+
+- node + npm (https://nodejs.org/)
+
+## Setup 
+
+npm install
+
+## Start
 
 npm start
+
